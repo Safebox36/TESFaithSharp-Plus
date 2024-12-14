@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFSP", "TFSP.csproj", "{ACBA29C3-7541-4D55-8FDC-C3441C3D68C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACBA29C3-7541-4D55-8FDC-C3441C3D68C5}.Debug|x86.ActiveCfg = Debug|x86
+		{ACBA29C3-7541-4D55-8FDC-C3441C3D68C5}.Release|x86.ActiveCfg = Release|x86
+		{ACBA29C3-7541-4D55-8FDC-C3441C3D68C5}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

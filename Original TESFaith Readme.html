@@ -1,0 +1,397 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Paul Halliday">
+   <title>TESfaith</title>
+   <!-- Written by me in Notepad! --!>
+</head>
+<body text="#FFFFFF" bgcolor="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<center>
+<h1>
+<i><font color="#00CC00">TESfaith</font></i></h1></center>
+
+<center>
+<h2>
+<font color="#666666">(The stuff that moves mountains)</font></h2></center>
+
+<p><br><font color="#FFFFFF"><i>TESfaith</i> is a utility to Move, Copy
+or Delete cells stored in a TES3 file (such as Morrowind: Elder Scrolls
+III). It also processes the landscape and all objects associated with that
+cell. e.g. if you make a copy of a region or cell (internal or external)
+then all objects (NPCs, statics such as furniture, lighting, sound) will
+be copied with it. Likewise if you move a cell all objects will be moved
+with it.</font>
+<br><font color="#FFFFFF">You can easily do the following:</font>
+<ul>
+<ul>
+<li>
+<font color="#FFFFFF">1. Copy all external cells to another location (e.g.
+You can duplicate the island of Vvardenfell in 1 command.)</font></li>
+
+<li>
+<font color="#FFFFFF">2. Transpose (move) all external cells to another location (e.g.
+You can relocate the island of Vvardenfell in 1 command.)</font></li>
+
+<li>
+<font color="#FFFFFF">3. Copy an Entire Region to another location.</font></li>
+
+<li>
+<font color="#FFFFFF">4. Transpose (move) a Region to another location.</font></li>
+
+<li>
+<font color="#FFFFFF">5. Delete an entire Region (i.e. You can wipe out
+the original island of Vvardenfell in 9 commands!)</font></li>
+
+<li>
+<font color="#FFFFFF">6. Copy a single External Cell to another location.</font></li>
+
+<li>
+<font color="#FFFFFF">7. Move a single External Cell to another location.</font></li>
+
+<li>
+<font color="#FFFFFF">8. Transpose a single External Cell by an offset
+to another location.</font></li>
+
+<li>
+<font color="#FFFFFF">9. Delete all External Cells.</font></li>
+
+<li>
+<font color="#FFFFFF">10. Delete individual External Cells.</font></li>
+
+<li>
+<font color="#FFFFFF">11. Make a copy of an Internal Cell and call it by
+another name.</font></li>
+
+<li>
+<font color="#FFFFFF">12. Delete an Internal Cell.</font></li>
+
+<br>&nbsp;</ul>
+</ul>
+<font color="#FFFFFF"><i>TESfaith</i> is a simple command line program
+(i.e. run it from a command prompt), born out of necessity when Bethesda
+released Bloodmoon, placing an island of exactly the same size and in exactly
+the same place as my earlier plugin (the island of&nbsp;</font><i> 
+<a href="http://homepages.which.net/~g.halliday/morrowind/">The Attack on Ynys Mon</a></i><font color="#FFFFFF">).
+No such functionality currently exists in the TES Construction Set Editors, so something like
+this had to be written. It should be far simpler to solve conflicting plugin
+problems with this utility.</font>
+<p><font color="#FFFFFF">All <i>TESfaith</i> needs to run is an ESM/ESP file
+(a Morrowind master or plugin file) and a <i>Rules</i> file (always called <b><i>TFAITH.CFG</i></b>) which
+you can easily modify using <b>Notepad</b>. You should already have an example <b><i>TFAITH.CFG</i></b> file when you downloaded this distribution.</font>
+<br>&nbsp;
+<h2>
+<u><font color="#00CC00"><font size=+2>1. Format of the Rules File (<i>TFAITH.CFG</i>)</font></font></u></h2>
+An example rules file (<i>TFAITH.CFG</i>) is included with the distribution. You can edit this using Windows' <b>Notepad</b> or
+any other plain text editor.
+<br>Each rule tells TESfaith what to do if it finds a matching Cell or Region. Each rule must start with a valid upper-case two character command, followed by up to 4 commar delimited parameters, depending on the type of command.
+<br>Once a rule is matched, no further processing is done to that cell. Many examples are given below:
+<blockquote>
+<h3>
+<u><font color="#00CC00">Examples:</font></u></h3>
+</blockquote>
+
+<blockquote>
+<blockquote>
+<h4>
+1. <font color="#FFFFFF">TA: </font>Transposing all external cells a new location:</h4>
+
+<blockquote>TA, -100, 80
+<p>This would move all the cells contained in the master/plugin and everyone in it far to the
+North-West (-100 is West by 100 cells, 80 is north by 80 cells).</blockquote>
+
+<h4>
+2. <font color="#FFFFFF">CA: </font>Copying all external cells to a new location:</h4>
+
+<blockquote>CA, 30, -28
+<p>This would make a copy of all cells contained in the master/plugin and everything in them to the
+South-East (30 is east by 30 cells, -28 is south by 28 cells).</blockquote>
+
+
+<h4>
+3. <font color="#FFFFFF">CR: </font>Copying a Region to a new location:</h4>
+
+<blockquote>CR, "Ascadian Isles Region", -100, 80
+<br>CR, "Ashlands Region", -100, 80
+<br>CR, "Azura's Coast Region", -100, 80
+<br>CR, "Bitter Coast Region", -100, 80
+<br>CR, "Grazelands Region", -100, 80
+<br>CR, "Molag Mar Region", -100, 80
+<br>CR, "Red Mountain Region", -100, 80
+<br>CR, "Sheogorad", -100, 80
+<br>CR, "West Gash Region", -100, 80
+<p>This would make a copy of Vvardenfell and everyone in it far to the
+North-West (-100 is West by 100 cells, 80 is north by 80 cells).</blockquote>
+
+<h4>
+4. TR: Moving a Region (Transpose Region) to a new location:</h4>
+</blockquote>
+</blockquote>
+
+<blockquote>
+<blockquote>
+<blockquote><i>TR, "Azura's Coast Region",3,0</i>
+<p>This would detach all cells in the Azura's Coast Region from the rest
+of Vvardenfell, moving each cell in the region east by 3 cells, declaring
+clear independence for The Lady. ;)</blockquote>
+</blockquote>
+</blockquote>
+
+<blockquote>
+<blockquote>
+<h4>
+<font color="#FFFFFF">5. Deleting a Region</font></h4>
+
+<blockquote><i>DR,"Red Mountain Region"</i>
+<p>Would delete all cells in the Red Mountain Region, leaving a big hole
+in the north of Vvardenfell, but solving the problem of Dagoth Ur once
+and for all. (Note that TES will complain about any Dialogue, Doors or
+AITravel references to any deleted cells when the new file is first opened).</blockquote>
+
+<h4>
+6. Copying an Exterior Cell.</h4>
+
+<blockquote><i>CE, -2, 5, 23, 5</i>
+<p>Would make a copy of the cell at (-2,5) and place this copy at (23,
+5). Note: (-2, 5) happens to be Buckmoth Legionnary Fort, so this would
+create an identical Fort and landscape somewhere off the east coast.</blockquote>
+
+<h4>
+7. Moving an Exterior Cell.</h4>
+
+<blockquote><i>MC, 0, 0, 25, 25</i>
+<p>Would move the cell at (0,0) to (25,25), leaving a hole in the centre
+of Vvardenfell; presumably it was Vvarden who first found this out.</blockquote>
+
+<h4>
+8. Transposing an Exterior Cell.</h4>
+
+<blockquote><i>TC, 1, -13, 0, -10</i>
+<br><i>TC, 2, -13, 0, -10</i>
+<p>Would move the cells at (1,-13) and (2,-13) by an offset of (0,-10).
+Therefore (1,-13) would be moved to (1,-23) and (2,-13) would be moved
+to (2,-23).
+<br>This example would move the exterior of Ebonheart south by 10 cells.
+This option is just a little more handy than 'MC' if you want to displace
+a group of cells, without having to calculate the exact position for each.</blockquote>
+
+<h4>
+9. Deleting all Exterior Cells.</h4>
+
+<blockquote><i>DA</i>
+<p>This would delete all the external cells contained in the master/plugin and 
+everyone/everything located in them. It's a pretty devastating option to use.</blockquote>
+
+<h4>
+10. Deleting an Exterior Cell.</h4>
+
+<blockquote><i>DE, 2, 8</i>
+<p>This would remove the cell at (2,8) from the land, leaving a flat wilderness
+in its place; since (2,8) is the ruins of Dagoth Ur, this would make the
+game incompletable.</blockquote>
+
+<h4>
+11. Copying an Interior Cell.</h4>
+
+<blockquote><i>CI, "Vivec, Arena Pit", "My Arena 1"</i>
+<p>Would create anew interior cells called "My Arena 1" which is an exact
+duplicate of "Vivec, Arena Pit". Very handy if you quickly want to duplicate
+the internal structure of an existing building or ship without spending
+ages starting from scratch.</blockquote>
+
+<h4>
+12. Delete an Interior Cell.</h4>
+
+<blockquote><i>DI, "ken's test hole"</i></blockquote>
+</blockquote>
+
+<blockquote>
+<blockquote>You can do this in the TES editor anyway, but it was so easy
+to implement I put it in anyway. This example deletes the interior cell
+called "ken's test hole" - something Bethesda left in the original "Morrowind.esm".</blockquote>
+</blockquote>
+Note that lines beginning with a <i>#</i> or a space character are ignored.
+So a # usually denotes a comment.</blockquote>
+
+<h2>
+<u><font color="#00CC00">2. Running the program</font></u></h2>
+<blockquote>TESfaith was originally designed to be run from a command prompt (a DOS-style prompt from Windows). 
+However if you don't know how to do this it is also possible to tell <i>TESfaith</i> which plugin file it 
+should process and other options by adding a single line to the rules file, <b><i>tfaith.cfg</i></b>.
+The simplest line you could add add to <i><b>tfaith.cfg</i></b> to tell <i>TESfaith</i> it should process the 
+Morrowind plugin file called <b>MyFile.ESP</b> is:
+<blockquote><b><i>tesfaith&nbsp; MyFile.ESP</i></b></blockquote>
+That should be all most people will want to run. If you save the <b><i>tfaith.cfg</i></b> 
+file with a line like this in it and double-click on <b>TESfaith.exe</b> in Windows 
+explorer then <i>TESfaith</i> will do the rest:&nbsp; It will read <i>MyFile.ESP</i>, test each 
+cell it encounters against the rules in TFAITH.CFG and create a modified version in a file called 
+<i>TFOUT.ESP</i>.&nbsp; If no rules were matched then the contents of <i>TFOUT.ESP</i> 
+will be identical to <i>MyFile.ESP</i>. <font color="#FF0000">NOTE: TESfaith never alters
+your original input file!</font> (unless your original ESP file happened
+to be called TFOUT.ESP. ;)
+<br>You can also run ESM (Master) files through TESfaith in the same way.
+e.g.
+<blockquote><i><b>tesfaith&nbsp; Morrowind.esm</b></i></blockquote>
+This will still place the output in TFOUT.ESP, but you can simply rename the
+extension to '.ESM' and load it in to Morrowind as a Master if you wish.
+<p><i>TESfaith</i> writes a log of everything it changes to <i>TFTHLOG.TXT</i>,
+which you can open in Wordpad (it'll probably look wrong in Notepad) if
+you wish to confirm all the changes that it has made.
+<p>You may also specify more verbose (detailed) logging by specifying <i>'-v'</i>
+on the command line; every record and object that is found is recorded in the 
+log file with this option, regardless of whether a rule matched it or not.
+<blockquote><i><b>tesfaith -v MyFile.ESP</b></i></blockquote>
+
+<p>You can tell <i>TESfaith</i> to only save moved or copied Cells, Land and Objects
+to TFOUT.ESP using the <i>'-n'</i> option. This is ideal if you just want to rip land
+from another Master or plugin file in to a fresh plugin. For example, to only save
+modified or copied cells from Bloodmoon.esm to TFOUT.ESP:
+<blockquote><i><b>tesfaith -n Bloodmoon.esm</b></i></blockquote>
+Note that when using <i>'-n'</i>, information such as scripts or region data are not stored, 
+so you may get some warnings when you try to load the resulting file in to TES CS or 
+Morrowind itself.<BR>
+
+<p>You can ask <i>TESfaith</i> to dump a verbose explanation of your Rules
+by using the <i>'-r'</i> option. It won't make any modifications - it's just
+for information purposes. A copy of these verbose (plainer English) rules will
+be stored in <i>TFTHLOG.TXT</i> which you can easily view in Notepad:
+<blockquote><i><b>tesfaith -r</b></i></blockquote>
+
+<p>For backwards compatibility you can tell <i>TESfaith</i> <b>NOT</b> to modify any Scripts
+or Dialog commands by using the <i>'-d'</i> option:
+<blockquote><i><b>tesfaith -d "Siege at Firemoth.esp"</b></i></blockquote>
+
+<p>Finally you can also ask <i>TESfaith</i> to dump a list of all the cell
+co-ordinates that exist in your ESP/ESM file by specifying <i>'-l'</i>:
+<blockquote><i><b>tesfaith -l&nbsp; MyFile.ESP</b></i></blockquote>
+This will create a file called <i>CELL_LOG.TXT</i> with all the cell co-ordinates
+listed. This output file may easily be turned in to a TFAITH.CFG file -
+the co-ordinates of your cells will already be listed. No modifications
+are made in list cell mode.
+</blockquote>
+</blockquote>
+
+<h2>
+<u><font color="#33FF33">3. A Complete Novice's example to moving land in a plugin.</font></u></h2>
+Here's an example: You have a plugin called "Siege at Firemoth.esp" and want to move all
+the land and objects in the region called "Firemoth Region" 10 cells west and 15 cells south.
+You also want to move the cell at (-2,9) to (-60, 40) just because you feel like it. Here's what you'd 
+need to do:<BR><BR>
+1. Open <b>tfaith.cfg</b> in Notepad (e.g. double-click on it in Windows Explorer).<BR>
+2. Delete everything that's currently there in the file (or make sure all the current lines have a '#'
+   in front of them).<BR>
+3. Type in the following 3 lines:<BR>
+<blockquote><font color="#00AA00">
+tesfaith "Siege at Firemoth.esp"<BR>
+TR, "Firemoth Region", -10, -15<BR>
+MC, -2, 9, -60, 40<BR>
+</font></blockquote>
+4. Save the file.<BR>
+5. Now double-click on <b><i>tesfaith.exe</i></b> in Windows Explorer.<BR>
+6. That's it. A new file called <b>TFOUT.ESP</b> will appear in the same directory which is the 
+modified version of the "Siege at Firemoth.esp"<BR>
+7. As a precaution, untick the "Siege at Firemoth" if you have it listed as one of your Data Files in Morrowind.<BR>
+8. You can now open this <b>TFOUT.ESP</b> in the TES Construction Set or Morrowind itself to see if the new plugin has been changed as you wanted it.<BR>
+9. If you're curious, you can open the file called <b>tfthlog.txt</b> in Notepad to see a detailed list
+of the things <i>TESfaith</i> changed when building <b>TFOUT.ESP</b>.<BR>
+10. If you're even more curious, it is possible to get <i>TESfaith</i> to give a very detailed account of everything in <b>tfthlog.txt</b> if you go through steps (1-6) again, but this time change the <font color="#00AA00">tesfaith "Siege at Firemoth.esp"</font> command in step <i>3</i> to:
+<blockquote><font color="#00AA00">tesfaith -v "Siege at Firemoth.esp"</font></blockquote>
+&nbsp;&nbsp;&nbsp;and then carry out step 9 again.<BR>
+
+
+<h2>
+<u><font color="#33FF33">4. Further Notes</font></u></h2>
+Due to numerous requests asking whether TESfaith could be modified to fix
+Interior->Exterior door teleport co-ordinates when the landscape has been 
+moved I have modified the program in an internet cafe whilst I'm travelling
+in Australia using a free C compiler (Cygwin). Although I used <i>TESfaith</i>
+to process ESPs that I can download from here through mutiple translations and 
+the door co-ordinates appear correctly in the plugin file, I don't have a 
+copy of Morrowind out here so I cannot test this in the game. Should anyone 
+find that the Interior->Exterior Doors don't point to where they should then 
+please email me.<BR><BR>
+Additionally I have now modified <i>TESfaith</i> to modify the text of Scripts and Dialog
+commands if they are affected by cells being moved. Specifically <i>TESfaith</i> will now
+modify <b>Position</b>, <b>PlaceItem</b>, <b>AITravel</b>, <b>AIFollow</b> and <b>AIEscort</b>
+commands if they use co-ordinates belonging to cells that are moved. You may need to recompile
+these scripts in the TES Construction Set and save the plugin again to ensure the changes
+work - I don't have Morrowind here so I cannot verify whether you need to do this.<BR>
+If anyone experiences what they believe to be incorrect modifications to script commands
+then I'd be very grateful if they could email me the line that <i>TESfaith</i> didn't modify
+correctly - everything I have tested should work, but that's not to say that Morrowind will
+think the same. Remember that the <i>'-d'</i> option can be used to tell <i>TESfaith</i> not 
+to modify any scripts if you find problems - you can then modify them yourself in TES CS.<BR><BR>
+The ability to add the <i>TESfaith</i> command line arguments to the tfaith.cfg file has
+been done at the same time as has the ability for <i>TESfaith</i> to only save the cells, land
+and objects moved or copied - this is ideal for "ripping" land and its objects from another
+plugin or master.<BR><BR>
+
+Other points to note are the following:
+<blockquote>1. When deleting cells from a ESP or ESM file, the object references
+that were placed in them are also removed. This will not delete the <i>availability</i>
+of that type of object from the original file, so if you had a NPC called
+"Fred" situated in cell (-20,20) and you deleted that cell, then Fred will
+no longer be associated with (-20,20), but the NPC will still be available
+in the file; You can still place that NPC elsewhere in the TES Construction
+Set (TCS) or using script commands in the game.
+<p>2. A plugin (ESP) file is a 'changes' file. Deleting Cells from the
+ESP will remove the changes: If a cell already exists at the deleted location
+in the Master file, then the Master file cell will still exist.
+<p>3. When using the TA or CA options to move or copy all external cells in a plugin,
+note that if your plugin contained changes to existing external cells contained in the 
+master file (e.g. you added an object or modified landscape on Vvardenfell) then the
+change will also be moved which is probably not what you want. Use the TR/CR or TE/ME 
+commands if you want better control.
+<p>4. <i>TESfaith</i> only moves cells, objects associated with those cells
+and the landscape and updates Interior doors, Scripts and Dialog Script commands
+ that pointed to the moved cells. This should take away the vast majority of 
+work involved in relocating or duplicating all or part of a plugin. Some less used
+functions such as specifying AITravel or AIFollow values using the drop-down AI box
+on a NPC in TES CS are not currently modified.
+<p>5. When copying Internal Cells, the name of the new cell must be of
+equal or smaller size to the original. If you try something larger, <i>TESfaith</i>
+will warn you of the reason and immediately exit without making any modifications.
+This was just to make the programming simpler and you can trivially rename
+the duplicated cell in TCS later. Note that it's relatively easy to copy and paste
+all the objects from one cell to another (interior or exterior) in TES CS anyway, so
+you don't have to use <i>TESfaith</i> to do this.
+<p>6. There may well be internal limits to TCS or Morrowind that mean cells
+of very large offsets may not work. Hypothetically (2^32/8192) = +262144 to -262143
+may be stored in the TES3 file and objects will still be addressible. In
+reality the limit may be far less (try moving cells to far off locations
+if you're curious about the limits).
+<p>7. The summary at the end of <i>TESfaith</i> will include the total number
+of records changed. Note that a CELL record (name and objects) and a LAND
+record (the landscape details) are separate records, so the summary number
+may appear twice the number you expected under certain circumstances. That's
+normal!</blockquote>
+
+<h3>
+<u><font color="#00CC00">5. Acknowledgements</font></u></h3>
+Although I haven't consulted anyone directly regarding the technical details
+of moving cells, the information already posted on the Morrowind forums
+was enough to give me a very good start in tackling this problem.
+<br>So many thanks to <i>Klinn</i> for the first pointing me to a useful
+thread on moving cells in the first place, <i>JOG</i> for his post regarding
+the position and format of (x,y) co-ordinates in LAND cells and <a href="http://home.cinci.rr.com/jimadam/MorrowindESPFormat.html">Jim
+Adam's Page</a>&nbsp; for a more detailed structure of the TES3 file.
+<p>This program is provided without warranty, but you're free to distribute
+it as much as you please (just please remember to include me somewhere!
+;)
+<br>I doubt I'll have time to bolt a front-end on to it, though it's possible
+for someone to write an independent front-end that uses the <i>'-l'</i> option 
+with <i>TESfaith</i> to dump out a list of all the cells contained within a plugin, 
+reads this back in and writes out a rules file with all the user's requested changes and runs <i>TESfaith</i> on those rules ...
+
+<br>&nbsp;
+<p>Diolch yn Fawr. :-)
+<br>&nbsp;
+<p>Paul Halliday (aka <font color="#00CC00">Lightwave</font>)<BR><BR></p>
+<p>Updated: 19-February-2004 (fourth release).<BR>
+<HR>Third release: 21-January-2004.<BR>
+Second release:   14-December-2003.<BR>
+Original release: 26-September-2003.<BR>
+<br>&nbsp;
+</body>
+</html>

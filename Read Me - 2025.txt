@@ -1,0 +1,22 @@
+Guess it's my turn.
+
+To those who came before me, thank you for this tool.
+To those who will come after me, I hope you've added useful features.
+
+Anyway, this is a 20-year overdue upgrade of TESFaith# which itself is a one year upgrade of TESFaith.
+Requires .NET 4.4 to run.
+
+Those ReadMes still apply, and it's recommended that you read those before reading this.
+
+I've made several bug fixes, far too numerous to list, so if any new ones crop up then please inform me.
+New features include:
+- shortcut keys
+- in-app CELL list
+- named CELL highlighting
+- REGION highlighting
+- clearer Batch Processs instructions
+- cleaner UI
+- a lovely little icon of the Vivec Statue
+
+Same licences apply as before, remember to credit myself (BNK), Timeslip, and Lightwave.
+You are free to do as you with with this code otherwise.

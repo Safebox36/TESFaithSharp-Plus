@@ -1,0 +1,16 @@
+<Combine fileversion="1.0" name="TESFaith" description="">
+  <StartMode startupentry="TESFaith" single="True">
+    <Execute entry="TESFaith" type="None" />
+  </StartMode>
+  <Entries>
+    <Entry filename=".\TESFaith.prjx" />
+  </Entries>
+  <Configurations active="Debug">
+    <Configuration name="Release">
+      <Entry name="TESFaith" configurationname="Debug" build="False" />
+    </Configuration>
+    <Configuration name="Debug">
+      <Entry name="TESFaith" configurationname="Debug" build="False" />
+    </Configuration>
+  </Configurations>
+</Combine>
