@@ -381,7 +381,7 @@ namespace TESFaith {
             int nsize;
             float xpos,ypos;
 
-            if(data.GetString(pos,4)=="NAME") {
+            if(data.GetString(pos,4)!="NAME") {
                 Log("Unknown field in FRMR entry: "+data.GetString(pos,4)+"\n");
                 pos=record_size;
                 return pos;

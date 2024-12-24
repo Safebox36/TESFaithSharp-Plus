@@ -181,7 +181,7 @@ namespace TESFaith {
             foreach(ChangedCell cc in OverlaidCells) {
                 if(cc.OldX<LeftCorner||cc.OldX>=LeftCorner+xSize) continue;
                 if(cc.OldY>TopCorner||cc.OldY<=TopCorner-ySize) continue;
-                e.Graphics.FillRectangle(Brushes.Khaki,(cc.OldX-LeftCorner)*SquareSizeL,
+                e.Graphics.FillRectangle(cc.Name != "" ? Brushes.LightBlue : Brushes.Khaki,(cc.OldX-LeftCorner)*SquareSizeL,
                     (TopCorner-cc.OldY)*SquareSizeL,SquareSizeL,SquareSizeL);
             }
             if(CurrentCells!=null) {
@@ -275,6 +275,7 @@ namespace TESFaith {
                 colours[1]=(byte)((colours[1]+128)%256);
                 brushes[i-1]=new SolidBrush(Color.FromArgb(colours[0],+colours[1],colours[2]));
             }
+            brushes[overlays] = new SolidBrush(Color.FromArgb(255 - colours[0], 255 - colours[1], 255 - colours[2]));
             //Create an image
             Bitmap bmp=new Bitmap((3+RightMost-LeftMost)*OutSizeL, (3+TopMost-BottomMost)*OutSizeL+10*overlays);
             Graphics g=Graphics.FromImage(bmp);
@@ -286,7 +287,7 @@ namespace TESFaith {
             foreach(ChangedCell cc in OverlaidCells) {
                 BarHeight=(byte)(OutSizeL/CellTotalCount[cc.OldX-LeftMost, TopMost-cc.OldY]);
                 BarOffset=(byte)(BarHeight*CellCounted[cc.OldX-LeftMost, TopMost-cc.OldY]++);
-                g.FillRectangle(brushes[cc.Overlay], (1+cc.OldX-LeftMost)*OutSizeL,
+                g.FillRectangle(cc.Name != "" ? brushes[overlays] : brushes[cc.Overlay], (1+cc.OldX-LeftMost)*OutSizeL,
                     (1+TopMost-cc.OldY)*OutSizeL+BarOffset, OutSizeL, BarHeight);
             }
             //Draw the lines

@@ -505,11 +505,22 @@ namespace TESFaith {
             if(CurrentRule.type==RuleType.All) rbAll.Checked=true;
             else if(CurrentRule.type==RuleType.Region) rbRegion.Checked=true;
             else rbCell.Checked=true;
+
+			tbCellName.Text=CurrentRule.cellName;
+			tbRegionName.Text=CurrentRule.regionName;
+			tbOldX.Text=CurrentRule.data.OldX.ToString();
+			tbOldY.Text=CurrentRule.data.OldY.ToString();
+			tbNewName.Text=CurrentRule.newName;
+			tbNewX.Text=CurrentRule.data.NewX.ToString();
+			tbNewY.Text=CurrentRule.data.NewY.ToString();
+
             if(index==0) bPrevious.Enabled=false;
             else bPrevious.Enabled=true;
-            if(index==Rules.Count-1) bNext.Enabled=false;
+            
+			if(index==Rules.Count-1) bNext.Enabled=false;
             else bNext.Enabled=true;
-            if(Rules.Count>1) bDelete.Enabled=true;
+            
+			if(Rules.Count>1) bDelete.Enabled=true;
             else bDelete.Enabled=false;
             UpdateTitle();
         }
